@@ -1,0 +1,24 @@
+# Specifies the version of the Docker Compose file format. '3.8' is a good, modern choice.
+version: '3.8'
+
+# This is where we define all the containers (services) our application needs.
+services:
+  # This is the name we're giving our service. We can call it anything.
+  docker-log-agent:
+    # 'build: .' tells Compose to look for a Dockerfile in the current directory and build it.
+    build: .
+    # We also give the built image a name for easy reference.
+    image: docker-log-agent
+    # This corresponds to the '--name' flag in the docker run command.
+    container_name: docker-log-agent-container
+    # Corresponds to '--restart always'. Ensures the service is always running.
+    restart: always
+    # Corresponds to '-v'. This mounts the Docker socket from the host into the container.
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # Corresponds to '--env-file'. This loads our API key from the .env file.
+    env_file:
+      - .env
+
+    environment:
+      - PYTHONUNBUFFERED=1
