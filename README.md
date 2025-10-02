@@ -14,7 +14,7 @@ Follow these steps to get the agent up and running on your machine.
 
 **1. Clone the Repository**
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/RakshitHarsh7/Docker-logs-agent.git
 cd docker-logs-agent
 ```
 
