@@ -16,8 +16,6 @@ if not GEMINI_API_KEY:
     print("Error: GEMINI_API_KEY not found. Please create a .env file.")
     exit()
 
-# Note: We don't need the old genai.configure() anymore.
-# LangChain handles the API key automatically if the environment variable is set.
 
 # Initialize the Docker client
 client = docker.from_env()
@@ -63,7 +61,7 @@ def analyze_logs_with_ai(logs):
 
     # 5. Invoke the chain
     try:
-        print("🤖 AI is analyzing the logs (via LangChain)...")
+        print("AI is analyzing the logs (via LangChain)...")
         response = chain.invoke({"logs": logs})
         return response
     except Exception as e:
@@ -71,7 +69,7 @@ def analyze_logs_with_ai(logs):
     
 def monitor_docker_events():
     # This entire function remains exactly the same!
-    print("✅ Log analysis agent started. Monitoring Docker containers...")
+    print("Log analysis agent started. Monitoring Docker containers...")
     event_filters = {'type': 'container', 'event': 'die'}
     
     for event in client.events(filters=event_filters, decode=True):
